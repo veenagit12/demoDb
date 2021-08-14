@@ -32,7 +32,7 @@ public class EmployeeController {
     @GetMapping(value = "/employee/{employeeId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Employee> getEmployee(@PathVariable Integer employeeId)
     {
-        return employeeRepository.findAllByEmployeePayroll(employeeId);
+        return employeeRepository.findAllByEmployeePayrollEmployeeId(employeeId);
 
     }
 

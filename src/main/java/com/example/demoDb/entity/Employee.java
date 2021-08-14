@@ -1,11 +1,13 @@
 package com.example.demoDb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.mapping.Set;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +19,7 @@ public class Employee implements Serializable
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "employee_id")
     private Integer employeeId;
 
     @Column(name = "last_name")
@@ -27,5 +30,12 @@ public class Employee implements Serializable
 
     @OneToOne @MapKeyColumn
     private EmployeePayroll employeePayroll;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinTable(name = "assignment",
+            joinColumns = {@JoinColumn(name ="employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "project_id")})
+
+    private Set<Project> projects = new HashSet<>();
 
 }
