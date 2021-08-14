@@ -35,4 +35,5 @@ public class CarController
         Optional<Car> optional = carRepository.findByName(carName);
         return optional.isPresent() ? optional.get() : new Car();
     }
+    // optional will write default null values if that car is not present
 }
