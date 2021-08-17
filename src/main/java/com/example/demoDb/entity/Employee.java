@@ -29,7 +29,11 @@ public class Employee implements Serializable
     private String firstName;
 
 
-    @OneToOne @MapKeyColumn
+    //@OneToOne @MapKeyColumn
+    //private EmployeePayroll employeePayroll;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id",nullable = false)
     private EmployeePayroll employeePayroll;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )

@@ -1,5 +1,6 @@
 package com.example.demoDb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +24,11 @@ public class EmployeePayroll implements Serializable {
 
     @Column(name = "salary")
     private long salary;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id",nullable = false)
+    private Employee employee;
+
 
 }
